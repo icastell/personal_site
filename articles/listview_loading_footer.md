@@ -21,7 +21,7 @@ First, create a layout with the loading view:
 </LinearLayout>
 ```
 
-Class structure:
+Following, you have a class structure:
 
 ```java
 public class ArticleListFragment extends ListFragment implements OnScrollListener {
