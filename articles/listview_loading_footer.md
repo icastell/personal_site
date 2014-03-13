@@ -26,7 +26,7 @@ Class structure:
 ```java
 public class ArticleListFragment extends ListFragment implements OnScrollListener {
 
-...
+	...
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -57,4 +57,4 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	}
 }
 
-``
+```
