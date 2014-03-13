@@ -52,9 +52,14 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 		if (firstVisibleItem + visibleItemCount >= (totalItemCount - 2) 
 		&& mMoreItems && getListAdapter().getCount() > 0) {
-			refreshData(false);
+			refreshData();
 		}
 	}
+
+	private void refreshData() {
+        	// To not load while we are downloading
+        	mMoreItems = false;
+        }
 
 	@Override
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
