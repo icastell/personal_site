@@ -1,6 +1,6 @@
 ### Add a loading footer in ListView
 
-This is a template to inclue a loading footer in a ListView inside a Fragment.
+This is a template to include a loading footer in a ListView inside a Fragment.
 
 First, create a layout with the loading view:
 
@@ -21,7 +21,7 @@ First, create a layout with the loading view:
 </LinearLayout>
 ```
 
-Class structure:
+Following, you have a class structure:
 
 ```java
 public class ArticleListFragment extends ListFragment implements OnScrollListener {
@@ -52,8 +52,14 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 		if (firstVisibleItem + visibleItemCount >= (totalItemCount - 2) 
 		&& mMoreItems && getListAdapter().getCount() > 0) {
-			refreshData(false);
+			refreshData();
 		}
+	}
+
+	private void refreshData() {
+		// To not load while we are downloading
+		mMoreItems = false;
+		// TODO: Refresh data
 	}
 
 	@Override
@@ -62,6 +68,7 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	}
 	
 	public void onFinishLoadData(Response response) {
+		// Important! This has to be executed in UI thread 
 		if(response.getStatus == SUCCESS) {
 			int numItems = response.getNumItems();
 			mMoreItems = numItems == LIMIT;
