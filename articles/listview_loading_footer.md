@@ -65,7 +65,7 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 		if(response.getStatus == SUCCESS) {
 			int numItems = response.getNumItems();
 			mMoreItems = numItems == LIMIT;
-			if (firstRefresh) {
+			if (mFirstRefresh) {
 				if(mListView.getFooterViewsCount()>0){
 					mListView.removeFooterView(mLoadingFooter);
 				}
