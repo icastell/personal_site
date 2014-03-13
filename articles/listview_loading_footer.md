@@ -27,7 +27,10 @@ Class structure:
 public class ArticleListFragment extends ListFragment implements OnScrollListener {
 
 	...
-
+	protected View mLoadingFooter;
+	protected boolean mFirstRefresh = true, mMoreItems = false;
+	...
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -35,10 +38,12 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 		// Pagination block
 		// Load the loading footer view
 		LayoutInflater inf = LayoutInflater.from(getActivity());
-		loadingFooter = inf.inflate(R.layout.view_loading_footer, null);
+		mLoadingFooter = inf.inflate(R.layout.view_loading_footer, null);
 		getListView().addFooterView(loadingFooter);
 		setListAdapter(adapter);
 		getListView().setOnScrollListener(this);
+		
+		mFirstRefresh = true;
 		...
 	}
  
@@ -46,7 +51,7 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 		if (firstVisibleItem + visibleItemCount >= (totalItemCount - 2) 
-		&& moreItems && getListAdapter().getCount() > 0) {
+		&& mMoreItems && getListAdapter().getCount() > 0) {
 			refreshData(false);
 		}
 	}
@@ -54,6 +59,29 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	@Override
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
 
+	}
+	
+	public void onFinishLoadData(Response response) {
+		if(response.getStatus == SUCCESS) {
+			int numItems = response.getNumItems();
+			mMoreItems = numItems == LIMIT;
+			if (firstRefresh) {
+				if(mListView.getFooterViewsCount()>0){
+					mListView.removeFooterView(mLoadingFooter);
+				}
+				mListView.addFooterView(mLoadingFooter);
+			}
+			mFirstRefresh = false;
+			// Delete the footer if no more items
+			if (!mMoreItems && mListView.getFooterViewsCount() > 0) {
+				mListView.removeFooterView(mLoadingFooter);
+			}
+		} else {
+			mMoreItems = false;
+			if (mListView.getFooterViewsCount()>0) {
+				mListView.removeFooterView(mLoadingFooter);
+			}
+		}
 	}
 }
 
