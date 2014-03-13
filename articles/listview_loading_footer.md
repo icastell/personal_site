@@ -68,6 +68,7 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	}
 	
 	public void onFinishLoadData(Response response) {
+		// Important! This has to be executed in UI thread 
 		if(response.getStatus == SUCCESS) {
 			int numItems = response.getNumItems();
 			mMoreItems = numItems == LIMIT;
