@@ -59,7 +59,8 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 	private void refreshData() {
         	// To not load while we are downloading
         	mMoreItems = false;
-        }
+        	// TODO: Refresh data
+	}
 
 	@Override
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
