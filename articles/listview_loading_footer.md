@@ -1,6 +1,6 @@
 ### Add a loading footer in ListView
 
-This is a template to inclue a loading footer in a ListView inside a Fragment.
+This is a template to include a loading footer in a ListView inside a Fragment.
 
 First, create a layout with the loading view:
 
