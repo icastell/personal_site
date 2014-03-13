@@ -6,43 +6,41 @@ First, create a layout with the loading view:
 
 ```xml
 
-	<?xmlversion="1.0"encoding="utf-8"?>
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center">
+<?xmlversion="1.0"encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:gravity="center">
 
-		<ProgressBar
-			android:id="@+id/progressBar1"
-			style="?android:attr/progressBarStyleLarge"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
- 
-	</LinearLayout>
+	<ProgressBar
+		android:id="@+id/progressBar1"
+		style="?android:attr/progressBarStyleLarge"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>
 ```
 
 Class structure:
 
 ```java
-publicclassArticleListFragmentextendsListFragmentimplementsOnScrollListener{
- 
+public class ArticleListFragment extends ListFragment implements OnScrollListener {
 
-…
- 
+...
 
-@Override
-public void onActivityCreated(Bundle savedInstanceState){
-     super.onActivityCreated(savedInstanceState);
-     ...
-     // Pagination block
-     // Load the loading footer view
-     LayoutInflaterinf=LayoutInflater.from(getActivity());
-     loadingFooter=inf.inflate(R.layout.view_loading_footer,null);
-     getListView().addFooterView(loadingFooter);
-     setListAdapter(adapter);
-     getListView().setOnScrollListener(this);
-     ...
-}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		...
+		// Pagination block
+		// Load the loading footer view
+		LayoutInflater inf = LayoutInflater.from(getActivity());
+		loadingFooter = inf.inflate(R.layout.view_loading_footer, null);
+		getListView().addFooterView(loadingFooter);
+		setListAdapter(adapter);
+		getListView().setOnScrollListener(this);
+		...
+	}
  
 
 	@Override
@@ -57,5 +55,6 @@ public void onActivityCreated(Bundle savedInstanceState){
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
 
 	}
+}
 
 ``
