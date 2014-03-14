@@ -1,5 +1,5 @@
 # Using location listener from Google Play Services
-----
+
 
 In this article I explain how to integrate the Location API in Google Play Services in your Android project.
 
@@ -16,7 +16,8 @@ First of all you need to set up the Google Play Services in your project. I'm us
 
 Next, you have a snippet with the structure to make your Activity/Fragment location aware:
 ```java
-public class LocationActivity extends Activity implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
+public class LocationActivity extends Activity implements GooglePlayServicesClient.ConnectionCallbacks, 
+	GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	// Milliseconds per second
@@ -149,6 +150,8 @@ Finally, you have to include this permissions to your AndroidManifest.xml:
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 <application ... >
-	<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+	<meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 </application>
 ```
