@@ -1,6 +1,7 @@
 # Using Google Maps v2
 
-´´´xml
+
+```xml
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/map_frame"
     android:layout_width="match_parent"
@@ -8,9 +9,10 @@
     android:background="@android:color/transparent" >
 
 </FrameLayout>
-´´´
+```
 
-´´´java
+
+```java
 public class MyMapFragment extends SupportMapFragment {
 
     protected SupportMapFragment mMapFragment;
@@ -142,4 +144,4 @@ public class MyMapFragment extends SupportMapFragment {
 		mMap.setMyLocationEnabled(true);
 	}
 }
-´´´
+```
