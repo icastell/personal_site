@@ -15,19 +15,29 @@
 ```java
 public class MyMapFragment extends SupportMapFragment {
 
-    protected SupportMapFragment mMapFragment;
-    protected GoogleMap mMap;
-    protected int mZoomPadding;
+	protected SupportMapFragment mMapFragment;
+	protected GoogleMap mMap;
+	protected int mZoomPadding;
+	private BitmapDescriptor mBitmapDescriptor;
     
-    ...
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// This is mandatory when use subclass a SupportMapFragment
+		super.onCreateView(inflater,container,savedInstanceState);
+       	...
+	}
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+		// Map pin
+		mBitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.pin);
         // Create the map view
         mMapFragment = SupportMapFragment.newInstance();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        // If we have the map embebed in a Activity we use
+        // getSupportFragmentManager() instead getChildFragmentManager()
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.map_frame, mMapFragment);
         transaction.commit();
         // Padding between the points and the screen borders when adjust the zoom level
@@ -54,8 +64,8 @@ public class MyMapFragment extends SupportMapFragment {
         mMap.clear();
         ArrayList<LatLng> points = new ArrayList<LatLng>();
         for (Place place : places) {
-            LatLng point = new LatLng(place.getLat(), place.getLon());
-            mMap.addMarker(new MarkerOptions().position(point).title(place.getPlaceTitle()).snippet(place.getDescription()));
+            LatLng point = new LatLng(place.getLatitude(), place.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(point).title(place.getPlaceTitle()).snippet(place.getDescription()).icon(mBitmapDescriptor));
             points.add(point);
         }
         adjustZoom(points);
@@ -144,4 +154,36 @@ public class MyMapFragment extends SupportMapFragment {
 		mMap.setMyLocationEnabled(true);
 	}
 }
+```
+
+Add this to your AndroidManifest.xml:
+```xml
+	<!-- GOOGLE MAPS -->
+	<permission
+        android:name="PACKAGE.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+	<uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+
+    <uses-permission android:name="PACKAGE.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    ..
+    
+    <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBEW1vPEIo7yNhOMRFqTLSYKLEuGws7_nw" />
+    
+    
 ```
