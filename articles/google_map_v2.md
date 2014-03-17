@@ -232,20 +232,19 @@ GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnIn
 
 ```java
 
-	...
-	private static final float MIN_DISTANCE = 100.0f;
-	private static final long TIMER_GAP = 500;
-	// Since we are consuming the event this is necessary to
-    // manage closing openned markers before openning new ones
-    private Marker mLastOpenned = null;
-    private float mLastZoom;
-    // Timer para no hacer muchas peticiones
-    // mientras el usuario mueve el mapa
-    private Handler mHandler = new Handler();
-    private DragMapRunnable mDragMapRunnable;
-    // Last position queried to the server
-    private LatLng mLastLatLng;
-    ...
+...
+private static final float MIN_DISTANCE = 100.0f;
+private static final long TIMER_GAP = 500;
+// Since we are consuming the event this is necessary to
+// manage closing openned markers before openning new ones
+private Marker mLastOpenned = null;
+private float mLastZoom;
+// Timer para no hacer muchas peticiones
+// mientras el usuario mueve el mapa
+private Handler mHandler = new Handler();
+private DragMapRunnable mDragMapRunnable;
+// Last position queried to the server
+private LatLng mLastLatLng;
 
 private void setUpMap() {
 	...
@@ -315,6 +314,6 @@ GoogleMap.OnCameraChangeListener cameraChangeListener = new GoogleMap.OnCameraCh
             // TODO: Query the server
         }
     }
-``
+```
 
 
