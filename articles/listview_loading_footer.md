@@ -6,7 +6,7 @@ First, create a layout with the loading view:
 
 ```xml
 
-<?xmlversion="1.0"encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
@@ -39,7 +39,7 @@ public class ArticleListFragment extends ListFragment implements OnScrollListene
 		// Load the loading footer view
 		LayoutInflater inf = LayoutInflater.from(getActivity());
 		mLoadingFooter = inf.inflate(R.layout.view_loading_footer, null);
-		getListView().addFooterView(loadingFooter);
+		getListView().addFooterView(mLoadingFooter);
 		setListAdapter(adapter);
 		getListView().setOnScrollListener(this);
 		
