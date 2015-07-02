@@ -9,8 +9,8 @@
    **Run the current configuration:** CTR+R  
   **Run in debugger:** CTR+D  
    **Open project properties:** CMD+;  
-**Open Android Studio preferences:** CMD+,
-**Find any command:** SHF+CMD+A
+**Open Android Studio preferences:** CMD+,  
+**Find any command:** SHF+CMD+A  
 **Auto-format code:** OPT+CMD+L
 **Delete line:** CMD+DELETE
 **Duplicate line/selection:** CMD+D
