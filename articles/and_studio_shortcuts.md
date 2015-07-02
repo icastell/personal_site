@@ -3,7 +3,9 @@
 ## Simple Shortcuts
 
 **Compile java sources:** SHF+CMD+F9
+
 **Build the project:** CMD+F9
+
 **Run the current configuration:** CTR+R
 **Run in debugger:** CTR+D
 **Open project properties:** CMD+;
