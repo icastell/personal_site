@@ -1,9 +1,1 @@
-<VAST version="3.0"><Ad id="1">
-                                    <Wrapper>
-                                        <VASTAdTagURI></VASTAdTagURI>
-                                    </Wrapper>
-                                </Ad><Ad id="2">
-                                    <Wrapper>
-                                        <VASTAdTagURI></VASTAdTagURI>
-                                    </Wrapper>
-                                </Ad></VAST>
+<VAST version="3.0"><Ad id="1"><Wrapper><VASTAdTagURI></VASTAdTagURI></Wrapper></Ad><Ad id="2"><Wrapper><VASTAdTagURI></VASTAdTagURI></Wrapper></Ad></VAST>
